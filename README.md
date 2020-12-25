@@ -1,4 +1,4 @@
-"# slack-clone-server" 
+# slack-clone-server
 
 A slack-clone-server build using Express, MySQL, Sequelize and Graphql following the Tutorial series of Ben Awad:
 
