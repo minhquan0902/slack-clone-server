@@ -10,6 +10,9 @@ import { fileLoader, mergeTypes, mergeResolvers } from "merge-graphql-schemas";
 import cors from "cors";
 import models from "./models";
 
+const SECRET = "ndjkaqbdukabkjdwaudohad";
+const SECRET2 = "ndjkaqbdukabkjdwaudohadsdadwadasd";
+
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, "./schema")));
 
 const resolvers = mergeResolvers(
@@ -36,6 +39,8 @@ app.use(
       user: {
         id: 1,
       },
+      SECRET,
+      SECRET2,
     },
   })
 );
