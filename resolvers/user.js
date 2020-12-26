@@ -1,6 +1,6 @@
 /* eslint-disable arrow-parens */
 /* eslint-disable quotes */
-import bcrypt from "bcrypt";
+
 import _ from "lodash";
 import { tryLogin } from "../auth";
 
@@ -18,28 +18,12 @@ export default {
     allUsers: (parent, args, { models }) => models.User.findAll(),
   },
   Mutation: {
-    login: (parent, { email, password }, { models, SECRET }) =>
-      tryLogin(email, password, models, SECRET),
-    register: async (parent, { password, ...otherArgs }, { models }) => {
+    login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
+      tryLogin(email, password, models, SECRET, SECRET2),
+    register: async (parent, args, { models }) => {
       // Store hash password inside Database.
       try {
-        if (password.length < 5 || password.length > 50) {
-          return {
-            ok: false,
-            errors: [
-              {
-                path: "password",
-                message:
-                  "The password must be between 5 and 50 characters long",
-              },
-            ],
-          };
-        }
-        const hashedPassword = await bcrypt.hash(password, 12);
-        const user = await models.User.create({
-          ...otherArgs,
-          password: hashedPassword,
-        });
+        const user = await models.User.create(args);
 
         return {
           ok: true,
