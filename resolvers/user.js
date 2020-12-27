@@ -14,7 +14,6 @@ export default {
     login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
       tryLogin(email, password, models, SECRET, SECRET2),
     register: async (parent, args, { models }) => {
-      // Store hash password inside Database.
       try {
         const user = await models.User.create(args);
 

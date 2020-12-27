@@ -5,7 +5,6 @@ import _ from "lodash";
 import bcrypt from "bcrypt";
 
 export const createTokens = async (user, secret, secret2) => {
-  // {user: {id: 2}}
   const createToken = jwt.sign(
     {
       user: _.pick(user, ["id"]),
@@ -67,7 +66,6 @@ export const refreshTokens = async (
   const [newToken, newRefreshToken] = await createTokens(
     user,
     SECRET,
-    // eslint-disable-next-line comma-dangle
     refreshSecret
   );
   return {
@@ -101,7 +99,6 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
   const [token, refreshToken] = await createTokens(
     user,
     SECRET,
-    // eslint-disable-next-line comma-dangle
     refreshTokenSecret
   );
 

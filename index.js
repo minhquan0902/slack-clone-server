@@ -14,8 +14,8 @@ import jwt from "jsonwebtoken";
 import models from "./models";
 import { refreshTokens } from "./auth";
 
-const SECRET = "ndjkaqbdukabkjdwaudohad";
-const SECRET2 = "ndjkaqbdukabkjdwaudohadsdadwadasd";
+const SECRET = "asiodfhoi1hoi23jnl1kejd";
+const SECRET2 = "asiodfhoi1hoi23jnl1kejasdjlkfasdd";
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, "./schema")));
 
@@ -29,6 +29,7 @@ const schema = makeExecutableSchema({
 });
 
 const app = express();
+
 app.use(cors("*"));
 
 const addUser = async (req, res, next) => {
