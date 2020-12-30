@@ -2,8 +2,7 @@
 /* eslint-disable comma-dangle */
 import bcrypt from "bcrypt";
 
-/* eslint-disable quotes */
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const User = sequelize.define(
     "user",
     {
@@ -16,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
             msg: "The username can only contain letters and numbers",
           },
           len: {
-            args: [2, 25],
-            msg: "The username needs to be between 2 and 25 characters long",
+            args: [3, 25],
+            msg: "The username needs to be between 3 and 25 characters long",
           },
         },
       },
@@ -35,8 +34,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           len: {
-            args: [5, 50],
-            msg: "The password needs to be between 5 and 50 characters long",
+            args: [5, 100],
+            msg: "The password needs to be between 5 and 100 characters long",
           },
         },
       },
@@ -54,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     User.belongsToMany(models.Team, {
-      through: "member",
+      through: models.Member,
       foreignKey: {
         name: "userId",
         field: "user_id",
