@@ -1,6 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Message = sequelize.define("message", {
     text: DataTypes.STRING,
   });
